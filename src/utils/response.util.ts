@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Response } from "express";
 
 export interface IResponse {
@@ -5,7 +6,19 @@ export interface IResponse {
     meta?: any
 }
 
-export const buildResponse = (res: Response, data: any, meta?: any) => {
-    if (meta == undefined) return res.status(200).json({ statusCode: 200, message: "success", data })
-    return res.status(200).json({ statusCode: 200, message: "success", data, meta })
+export class ResponseUtil {
+    private readonly logger = new Logger(ResponseUtil.name);
+
+    buildResponse = (res: Response, data: any, meta?: any) => {
+        let result = null;
+
+        if (meta == undefined) {
+            result = { statusCode: 200, message: "success", data: data };
+        } else {
+            result = { statusCode: 200, message: "success", data: data, meta };
+        }
+
+        this.logger.log(JSON.stringify(result));
+        return res.status(200).json(result);
+    }
 }

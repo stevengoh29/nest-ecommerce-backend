@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { Gender } from "../enum/gender.enum";
 import { UserType } from "../enum/user-type.enum";
 
@@ -11,7 +11,7 @@ export class UserRegisterDto {
     @IsNotEmpty()
     password: string;
 
-    @IsString()
+    @IsEmail()
     @IsNotEmpty()
     email: string;
 
