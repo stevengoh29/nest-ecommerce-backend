@@ -7,7 +7,7 @@ import { UserRegisterDto } from "src/modules/users/dto/user-register.dto";
 export interface IAuthService {
     login(user: UserResponseDto): Promise<AuthResponseDto>;
     register(userRegisterDto: UserRegisterDto): Promise<User>;
-    logout(): Promise<String>;
+    logout(user: UserResponseDto): Promise<String>;
 }
 
 export interface IAuthRequest extends Request {

@@ -3,6 +3,7 @@ import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from
 import { Logger } from '@nestjs/common/services';
 import { validate } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
+import { MandatoryFieldException } from 'src/exceptions/common';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
@@ -19,7 +20,7 @@ export class ValidationPipe implements PipeTransform<any> {
     if (errors.length > 0) {
       this.logger.error("Validation of Request Body Dto has failed:")
       this.logger.error(errors);
-      throw new BadRequestException('Validation failed');
+      throw new MandatoryFieldException();
     }
     return value;
   }
