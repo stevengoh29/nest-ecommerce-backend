@@ -44,4 +44,9 @@ export class CategoriesService implements ICategoryService {
         const category = await this.categoryModel.findById(categoryId);
         return category;
     }
+
+    async existsCategoryById(categoryId: string): Promise<Boolean> {
+        const category = await this.categoryModel.countDocuments({ _id: categoryId });
+        return category > 0;
+    }
 }

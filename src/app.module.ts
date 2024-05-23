@@ -5,10 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggingMiddleware } from './middleware/logging.middleware';
 import { AuthModule } from './modules/auth/auth.module';
+import { CategoriesModule } from './modules/categories/categories.module';
 import { User, UserDocument, UserSchema } from './modules/users/schema/user.schema';
 import { UsersModule } from './modules/users/user.module';
 import { genPersonalKey } from './utils/hash.util';
-import { UsersService } from './modules/users/user.service';
 
 @Module({
   imports: [
@@ -38,10 +38,11 @@ import { UsersService } from './modules/users/user.service';
       }
     }]),
     UsersModule,
-    AuthModule
+    AuthModule,
+    CategoriesModule
   ],
   controllers: [AppController],
-  providers: [AppService,],
+  providers: [AppService],
 })
 
 export class AppModule implements NestModule {
